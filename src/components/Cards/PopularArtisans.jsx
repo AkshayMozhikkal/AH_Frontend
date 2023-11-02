@@ -12,7 +12,7 @@ import {
     return (
 
               
-            <Card className="min-w-[20rem]   m-3">
+            <Card className="w-96   m-3">
                 <CardHeader
                 floated={false}
                 shadow={false}

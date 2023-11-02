@@ -23,7 +23,7 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { usersDetailsURL } from "../../constants/constants";
+import { userBaseURL } from "../../constants/constants";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -50,6 +50,7 @@ export function UsersTable() {
   const [userData, setUserData] = useState([]);
   const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState([]);
+  const [users, setUsers] = useState([])
   const [update, setUpdate] = useState(false);
  
   const handleUpdate = () => setUpdate((cur) => !cur);
@@ -61,12 +62,9 @@ export function UsersTable() {
   // Fetch User data
    const fetchData = async () => {
     try {
-      const response = await axios.get(usersDetailsURL);
+      const response = await axios.get(userBaseURL);
       console.log(response.data);
-      // const data = response.data.results.filter(
-      //   (item) => item.is_superuser != true
-      // );
-      
+      setUsers(response.data)
       setUserData(response.data);
     } catch (error) {
       console.log(error.response, "Errorrr");
@@ -150,27 +148,12 @@ export function UsersTable() {
               <TabsHeader>
                 {TABS.map(({ label, value }) => (
                   <Tab key={value} value={value} onClick={ (e)=>{ 
-                      if (label=="Artisan"){
-                        console.log("artisan");
-                        
-                        const newdata = userData
-                        setUserData(newdata.filter((item)=>item.is_artisan===true));
-                        console.log(userData);
-                      }else if (label=="Common"){
-                        console.log("Common");
-                        
-                        const newdata = userData
-                        setUserData(newdata.filter((item)=>item.is_artisan===false));
-                        console.log(userData);
-
+                      if (label=="Artisan"){ 
+                        setUserData(users.filter((item)=>item.is_artisan===true));                      
+                      }else if (label=="Common"){           
+                        setUserData(users.filter((item)=>item.is_artisan===false));
                       }else{
-                        console.log("All");
-                        handleUpdate();
-                        console.log(userData);
-
-                      }  
-                        
-
+                        setUserData(users) }  
                      }}>
                     &nbsp;&nbsp;{label}&nbsp;&nbsp;
                   </Tab>
@@ -285,6 +268,7 @@ export function UsersTable() {
                             }}
                           >
                             <Chip
+                              className="cursor-pointer"
                               variant="ghost"
                               size="sm"
                               value="Active"
@@ -299,6 +283,7 @@ export function UsersTable() {
                             }}
                           >
                             <Chip
+                              className="cursor-pointer"
                               variant="ghost"
                               size="sm"
                               value="blocked"
@@ -313,7 +298,7 @@ export function UsersTable() {
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {rating}
+                          {is_artisan? "Artisan": "User"}
                         </Typography>
                       </td>
                       <td className={classes}>

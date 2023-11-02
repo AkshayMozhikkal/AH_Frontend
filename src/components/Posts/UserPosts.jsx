@@ -15,9 +15,14 @@ import { WorkBaseURL } from "../../constants/constants";
 import axios from "axios";
 import { Input } from "postcss";
 import Heart from "react-heart";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export function UserPosts({ workData, trig }) {
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.user.userInfo)
   const [comment, setNewComment] = useState("");
+
 
   // New Comment
   const newComment = async (workPost) => {
@@ -28,7 +33,7 @@ export function UserPosts({ workData, trig }) {
     try {
       const res = await axios.post(`${WorkBaseURL}new_comment/`, {
         post: workPost.id,
-        commented_by: workPost.user,
+        commented_by: user.id,
         text: comment,
       });
       console.log(res, "Commentpostsuccess");
@@ -38,7 +43,10 @@ export function UserPosts({ workData, trig }) {
     } catch (error) {
       console.log(error, "commentposterror");
       trig();
-      toast.error("Please try again..");
+      if (error.response.data['commented_by']){
+        toast.error("Please Login to comment on this post..!!")
+      }else{
+      toast.error("Please try again..");}
     }
   };
 
@@ -66,7 +74,7 @@ export function UserPosts({ workData, trig }) {
     console.log(workPost);
     
     try {
-      const res = await axios.post(`${WorkBaseURL}new_like/`,{post:workPost.id, liked_by:workPost.user})
+      const res = await axios.post(`${WorkBaseURL}new_like/`,{post:workPost.id, liked_by:user.id})
       console.log(res,"add_like_success");
       trig();
       
@@ -74,8 +82,10 @@ export function UserPosts({ workData, trig }) {
       
     } catch (error) {
       console.log(error, 'add_likeerrorrr');
-      toast.error("Please try again..")
-      
+      if (error.response.data['liked_by']){
+        toast.error("Please Login to Like this post..!!")
+      }else{
+      toast.error("Please try again..");}      
     }
   } 
 
@@ -84,7 +94,7 @@ export function UserPosts({ workData, trig }) {
     console.log(workPost);
     
     try {
-      const res = await axios.delete(`${WorkBaseURL}remove_like/`,{data:{post:workPost.id, liked_by:workPost.user}})
+      const res = await axios.delete(`${WorkBaseURL}remove_like/`,{data:{post:workPost.id, liked_by:user.id}})
       console.log(res,"removeLikesuccess");
       trig();
  
@@ -133,7 +143,7 @@ export function UserPosts({ workData, trig }) {
               <span> {workData.location}</span>
             </div>
             <div className="flex-row w-auto">
-              { workData?.likes?.filter((like)=>like.liked_by.id == workData.user).length > 0 ?
+              { workData?.likes?.filter((like)=>like.liked_by.id == user.id).length > 0 ?
                     <Heart isActive={true} className="float-left h-5 w-5" onClick={()=>removeLike(workData)}/>:
                     <Heart isActive={false} className="float-left h-5 w-5" onClick={()=>add_like(workData)}/>}
                     <span className="float-right ml-2 text-sm mt-1">{workData?.like_count && workData.like_count } likes</span>
@@ -161,12 +171,16 @@ export function UserPosts({ workData, trig }) {
                     }
                   />
                   <div className="w-full">
-                    <p>{comment.commented_by.username}</p>
+                    <p className="cursor-pointer" onClick={() => {
+                      comment.commented_by.id == user.id
+                        ? navigate("/profile")
+                        : navigate(`/user_profile/${comment.commented_by.id}`);
+                    }}>{comment.commented_by.username}</p>
                    
                     <p
                       className="text-gray-500 bg-blue-50 rounded p-2"
                     >{comment.text}</p>
-                     {comment.commented_by.id === workData.user ? (
+                     {comment.commented_by.id === user.id ? (
                       <div className="cursor-pointer italic text-sm text-brown-400 hover:text-red-500 float-right" onClick={(e) => {deleteComment(comment.id)}}>
                         delete
                       

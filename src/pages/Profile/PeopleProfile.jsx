@@ -196,6 +196,10 @@ function PeopleProfile() {
       setNewComment("");                        
     } catch (error) {
       console.log(error, "commentposterror");
+      if (error.response.data['commented_by']){
+        toast.error("Please Login to comment on this post..!!")
+      }else{
+      toast.error("Please try again..");}
       
     }
   };
@@ -215,35 +219,40 @@ function PeopleProfile() {
     }
   };
 
-  // // Add Like
-  // const add_like = async (workPost) => {
-  //   console.log(workPost);
+  // Add Like
+  const add_like = async (workPost) => {
+    console.log(workPost);
 
-  //   try {
-  //     const res = await axios.post(`${WorkBaseURL}new_like/`, {
-  //       post: workPost.id,
-  //       liked_by: loginedUser.id,
-  //     });
-  //     console.log(res, "add_like_success");
-  //   } catch (error) {
-  //     console.log(error, "add_likeerrorrr");
-  //     toast.error("Please try again..");
-  //   }
-  // };
+    try {
+      const res = await axios.post(`${WorkBaseURL}new_like/`, {
+        post: workPost.id,
+        liked_by: loginedUser.id,
+      });
+      setworkdata()
+      console.log(res, "add_like_success");
+    } catch (error) {
+      console.log(error, "add_likeerrorrr");
+      if (error.response.data['liked_by']){
+        toast.error("Please Login to Like this post..!!")
+      }else{
+      toast.error("Please try again..");}
+    }
+  };
 
-  // // Remove Like
-  // const removeLike = async (workPost) => {
+  // Remove Like
+  const removeLike = async (workPost) => {
 
-  //   try {
-  //     const res = await axios.delete(`${WorkBaseURL}remove_like/`, {
-  //       data: { post: workPost.id, liked_by: loginedUser.id },
-  //     });
-  //     console.log(res, "removeLikesuccess");
-  //   } catch (error) {
-  //     console.log(error, "removeLikeerrorrr");
-  //     toast.error("Please try again..");
-  //   }
-  // };
+    try {
+      const res = await axios.delete(`${WorkBaseURL}remove_like/`, {
+        data: { post: workPost.id, liked_by: loginedUser.id },
+      });
+      setworkdata()
+      console.log(res, "removeLikesuccess");
+    } catch (error) {
+      console.log(error, "removeLikeerrorrr");
+      toast.error("Please try again..");
+    }
+  };
 
   const search = async ()=>{
     try {
@@ -287,7 +296,7 @@ function PeopleProfile() {
                 className="cursor-pointer hover:text-blue-500  hover:font-bold"
                 onClick={() => {
                   targetDivRef.current.scrollIntoView({ behavior: "smooth" });
-                  showHidePost();
+                  setShow(true)
                 }}
               >
                 <p class="font-bold text-gray-700 text-xl hover:font-extrabold">
@@ -438,12 +447,13 @@ function PeopleProfile() {
                 return (
                   <div className="w-1/3 h-96 p-2 ">
                     <div class=" rounded overflow-hidden border w-full  hover:shadow-2xl transition hover:translate-x-2 hover:translate-y-3  bg-white "
-                    onClick={() => {
-                      setWorkpost(work);
-                      dialogueOpen();
-                      
-                    }}>
+                   >
                       <img
+                         onClick={() => {
+                          setWorkpost(work);
+                          dialogueOpen();
+                          
+                        }}
                         class="w-full bg-cover cursor-pointer "
                         src={work.image ? work.image : ""}
                         
@@ -470,7 +480,10 @@ function PeopleProfile() {
                           </span>
                         </div>
                         <div class="pt-1">
-                          <div class="mb-2 text-sm">
+                          <div class="mb-2 text-sm"  onClick={() => {
+                                setWorkpost(work);
+                                dialogueOpen();                               
+                              }}>
                             <span class="font-medium mr-2">{work.title}</span>{" "}
                             {work.description}
                           </div>
