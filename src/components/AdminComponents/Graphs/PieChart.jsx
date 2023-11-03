@@ -3,12 +3,12 @@ import { Chart, initTE } from 'tw-elements';
 
 function PieChart() {
   useEffect(() => {
-    // Initialize the TE Chart
+    
     initTE({ Chart });
   }, []);
 
   return (
-    <div className=" w-1/5 overflow-hidden bg-blue-gray-50 sm:w-full">
+    <div className=" w-1/5 overflow-hidden h-[500px] bg-blue-gray-50 sm:w-full">
       <canvas
         data-te-chart="pie"
         data-te-dataset-label="Traffic"

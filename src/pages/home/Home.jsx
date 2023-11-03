@@ -111,12 +111,12 @@ function Home() {
           );
         })}
       </div>
-      <div className="flex-col bg-white sm:mx-20 mt-20 h-auto max-h-[700px]">
-        <div className="flex justify-center items-center mt-20">
-          <p className="text-2xl">Recent Posts</p>
+      <div className="flex-col bg-white sm:mx-20 border-b-8  mt-20 h-auto max-h-[950px]">
+        <div className="flex justify-center items-center border-b-8  mt-20">
+          <p className="text-2xl ">Recent Posts</p>
           
         </div>
-        <div className="flex-col mt-10 bg-white shadow-2xl h-[700px] mx-20 overflow-y-scroll">
+        <div className="flex-col bg-gray-50 mt-16 h-[700px] mx-20 overflow-y-scroll">
           {works.map((work) => {
             return (
               <div className="mx-20 my-16 flex-col ">

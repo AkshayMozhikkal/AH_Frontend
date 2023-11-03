@@ -269,11 +269,11 @@ function PeopleProfile() {
   // UseEffects
   useEffect(() => {
     fetchUserDataAndWorks(userID);
-  }, [updated]);
+  }, [updated,userID]);
 
   useEffect(() => {
     connectionCheck();
-  }, [userData, updated]);
+  }, [userData, updated,userID]);
   
   return (
     <div>
@@ -396,7 +396,10 @@ function PeopleProfile() {
                 </button>
               )}
 
-              <button class="text-white py-2 rounded-full px-4  normal-case  bg-green-700 hover:bg-green-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+              <button class="text-white py-2 rounded-full px-4  normal-case  bg-green-700 hover:bg-green-900 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+              onClick={()=>{connection != null && connection.status=='a' ? navigate('/inbox'): toast.error("You both are not connected to chat..!")}}                          
+              
+              >
                 Message
               </button>
             </div>
@@ -601,7 +604,7 @@ function PeopleProfile() {
         mainFunction={removeConnection}
         data={connection.id}
         title={"CONFIRM CONNECTION REMOVAL"}
-        question={"Are you sure to remove this connection ?"}
+        question={`Are you sure to remove this connection ?`}
       />)}
 
       

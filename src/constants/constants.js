@@ -1,7 +1,18 @@
-export const userBaseURL = "http://127.0.0.1:8000/user/"
-export const singleUserURL = "http://127.0.0.1:8000/user/details/"
-export const userRegisterURL = "http://127.0.0.1:8000/user/register/"
-export const userLoginURL = "http://127.0.0.1:8000/user/token/"
 
-export const WorkBaseURL = "http://127.0.0.1:8000/user/work/"
-export const ConnectionBaseURL = "http://127.0.0.1:8000/user/connections/"
+
+
+
+export const googleClientID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
+export const userBaseURL = import.meta.env.VITE_userBaseURL;
+export const singleUserURL = import.meta.env.VITE_singleUserURL;
+export const userRegisterURL = import.meta.env.VITE_userRegisterURL;
+export const userLoginURL = import.meta.env.VITE_userLoginURL;
+export const baseURL = import.meta.env.VITE_baseURL;
+export const chatBaseURL = import.meta.env.VITE_chatBaseURL;
+
+
+export const WorkBaseURL = import.meta.env.VITE_WorkBaseURL;
+export const ConnectionBaseURL = import.meta.env.VITE_ConnectionBaseURL;
+
+export const wsApiUrl = import.meta.env.VITE_Ws_URL;

@@ -13,25 +13,32 @@ const ForgotPasswordForm = () => {
   const data = location.state && location.state.data;
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [laoding, setLoading] = useState(false);
+
+  const handleLoading = ()=> setLoading((cur)=>!cur)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    handleLoading();
 
     try {
       const response = await axios.post(`${userBaseURL}password_reset/`, { email });
       if (response.status === 200) {
-        setMessage('Password reset email sent.');
+        setMessage(`Password reset email sent. check your mailbox (${email})`);
+        handleLoading()
       } else {
         setMessage('Password reset request failed. Please check your email address.');
+        handleLoading()
       }
     } catch (error) {
         console.log(error);
       setMessage('An error occurred while sending the request.');
+      handleLoading()
     }
   };
 
   useEffect(()=>{
-    console.log(data,"uselocationnnnnnemail");
+    
     if (data && data.email){
         
         setEmail(data.email)
@@ -55,9 +62,9 @@ const ForgotPasswordForm = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     
-                    <Button type="submit" className='bg-green-500 mx-10'>Reset Password</Button>
+                    <Button type="submit" className='bg-green-500 mx-10'>{laoding ? `Sending Mail..` :`Reset Password`}</Button>
                 </form>
-                <p>{message}</p>
+                <p className='text-blue-600 font-serif mt-4 hover:text-deep-orange-400'>{message}</p>
             </div>
         </div>
      

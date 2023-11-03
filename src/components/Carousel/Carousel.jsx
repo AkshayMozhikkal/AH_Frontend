@@ -17,8 +17,7 @@ export function CarouselWithContent() {
               color="white"
               className="mb-4 text-3xl md:text-4xl lg:text-5xl"
             >
-              Say thanks!
-Give a shoutout to Samuel Giacomelli on social or copy the text below to attribute.
+              Crafting Dreams, Forging Bonds, Creating Art - Where Artisans Unite.
             </Typography>
             <Typography
               variant="lead"

@@ -6,6 +6,7 @@ import WorkPosts from '../pages/User/WorkPosts'
 import CreatePost from '../pages/User/CreatePost'
 import ChatBox from '../pages/User/ChatBox'
 import MyConnections from '../pages/Profile/MyConnections'
+import Settings from '../pages/Settings/Settings'
 
 function UserRoutes() {
   return (
@@ -17,6 +18,7 @@ function UserRoutes() {
             <Route element={<CreatePost/>} path='/new_post' />
             <Route element={<ChatBox/>} path='/inbox' />
             <Route element={<MyConnections/>} path='/my_connections' />
+            <Route element={<Settings/>} path='/settings' />
 
 
 

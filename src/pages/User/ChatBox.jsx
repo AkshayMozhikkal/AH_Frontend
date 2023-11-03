@@ -1,9 +1,8 @@
 
 import React from 'react'
 import SingleChat from '../../components/Chat/SingleChat'
-import Chat from '../../components/Chat/Chat'
 import ChatList from '../../components/Chat/ChatList'
-import { Navbarr } from '../../components/navbar/navbar'
+import { Navbarr } from '../../components/navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
 import { Sidebar } from '../../components/sidebar/Sidebar'
 

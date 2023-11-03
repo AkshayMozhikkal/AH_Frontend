@@ -62,6 +62,12 @@ export const userConnections = ()=>{
      {withCredentials : true})
     .catch((error)=>{throw error; });
 };
+// for users ChangePassword 
+export const userChangePassword = (values)=>{
+    return userAxiosInstance.patch(`change_password/`,values,
+     {withCredentials : true})
+    .catch((error)=>{throw error; });
+};
 
 
 

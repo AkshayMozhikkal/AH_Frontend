@@ -52,6 +52,7 @@ export function UsersTable() {
   const [userDetails, setUserDetails] = useState([]);
   const [users, setUsers] = useState([])
   const [update, setUpdate] = useState(false);
+  const [searchKey, setSearchKey] = useState("");
  
   const handleUpdate = () => setUpdate((cur) => !cur);
 
@@ -91,6 +92,20 @@ export function UsersTable() {
     setUserDetails([value, id, username]);
     setOpen(!open);
   };
+
+
+  // Search People
+  const search = async ()=>{
+    try {
+      const res = await axios.get(`${userBaseURL}search_people/${searchKey}/`)
+      console.log(res);
+      setUserData(res.data)
+    } catch (error) {
+      console.log(error, 'searcherror');
+      
+    }
+    
+  }
 
 
   return (
@@ -163,7 +178,8 @@ export function UsersTable() {
             <div className="w-full md:w-72">
               <Input
                 label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+                icon={<MagnifyingGlassIcon className="h-5 w-5" onClick={()=>search()}/>}
+                onChange={(e)=>setSearchKey(e.target.value)}
               />
             </div>
           </div>
@@ -304,9 +320,15 @@ export function UsersTable() {
                       <td className={classes}>
                         <Tooltip content={is_active ? "Block User" : "Unblock"}>
                           {is_active ? (
-                            <i className="fas fa-ban"></i>
+                            <i className="fas fa-ban"
+                            onClick={() => {
+                              handleOpen("False", id, username);
+                            }}></i>
                           ) : (
-                            <i class="fas fa-shield-halved"></i>
+                            <i class="fas fa-shield-halved"
+                            onClick={() => {
+                              handleOpen("True", id, username);
+                            }}></i>
                           )}
                         </Tooltip>
                       </td>

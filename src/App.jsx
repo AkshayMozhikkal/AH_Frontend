@@ -8,7 +8,6 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ConfirmMail from './pages/ConfirmMail';
 import ProtectedRoutes from './routes/protected/ProtectedRoutes';
-import { Button } from '@material-tailwind/react';
 import People from './pages/People/People';
 import PeopleProfile from './pages/Profile/PeopleProfile';
 import ForgotPasswordForm from './pages/ForgotPassword';

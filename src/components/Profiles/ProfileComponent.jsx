@@ -8,16 +8,15 @@ import {
   CardFooter,
   Typography,
   Input,
- 
   DialogBody,
   DialogFooter,
   Textarea,
   DialogHeader,
-  Tooltip,
+  
 } from "@material-tailwind/react";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import { WorkBaseURL, singleUserURL, userBaseURL } from "../../constants/constants";
+import { WorkBaseURL, chatBaseURL, singleUserURL, userBaseURL } from "../../constants/constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import defaultUser from "../../assets/images/static/default-user-icon-8.jpg"
@@ -25,7 +24,6 @@ import ArtWorkPost from "../UserComponents/ArtWorkPosts";
 import { useDispatch } from "react-redux";
 import { setAddressDetails, setConnectionsDetails, setUserDetails, setWorksDetails } from "../../redux/users";
 import Loader from "../Loading/Loading";
-import { CustomDialogue } from "../DialogueBoxes/DialogueBox";
 import { userAddressAdd, userAddressEdit, userAddressdetails } from "../../services/userAPIs";
 
 function ProfileComponent() {
@@ -41,6 +39,7 @@ function ProfileComponent() {
   const [connections, setConnections] = useState([]);
   const [works, setWorks] = useState([]);
   const [art, setArt] = useState("");
+  const [chatCount, setChatCount] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -97,6 +96,19 @@ function ProfileComponent() {
 
     }
   };
+
+  // Chat count fetch
+  const fetchChatCount = async (decoded)=>{
+    const userId = decoded.id
+    try {
+      const res = await axios.get(`${chatBaseURL}single_user_chats/${userId}/`)
+      setChatCount(res.data.chat_count)
+      
+    } catch (error) {
+      console.log(error, 'ChatcountError');
+      
+    }
+  }
 
   // Connections Fetch
   const fetchUserConnections = async (decoded) => {
@@ -203,6 +215,7 @@ function ProfileComponent() {
       fetchUserAddress(decoded);
       fetchUserConnections(decoded);
       fetchUserworkPosts(decoded);
+      fetchChatCount(decoded);
     }
   }, [update]);
 
@@ -457,7 +470,7 @@ function ProfileComponent() {
                   </div>
                   <div className="lg:mr-4 p-3 text-center cursor-pointer hover:text-blue-500  hover:font-bold" onClick={()=>navigate("/inbox")}>
                     <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
-                    0
+                    {chatCount}
                     </span>
                     <span className="text-sm text-blueGray-400">
                     <i className="fas fa-comments mr-2 text-xl text-blueGray-400"></i>
