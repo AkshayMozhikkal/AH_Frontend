@@ -235,6 +235,8 @@ function ProfileComponent() {
       }
     }
 
+    
+
     const userId = data.id;
     try {
       const response = await axios.patch(
