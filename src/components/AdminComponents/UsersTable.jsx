@@ -42,7 +42,7 @@ const TABS = [
   },
 ];
 
-const TABLE_HEAD = ["User", "Contact No:", "Status", "Rating", "Action"];
+const TABLE_HEAD = ["User", "Contact No:", "Status", "Type", "Action"];
 
 
 
@@ -141,22 +141,7 @@ export function UsersTable() {
       <Card className="h-full w-full">
         <CardHeader floated={false} shadow={false} className="rounded-none">
           <div className="mb-8 flex items-center justify-between gap-8">
-            <div>
-              <Typography variant="h5" color="blue-gray">
-                Users List
-              </Typography>
-              <Typography color="gray" className="mt-1 font-normal">
-                See information about all Users
-              </Typography>
-            </div>
-            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-              <Button variant="outlined" size="sm">
-                view all
-              </Button>
-              <Button className="flex items-center gap-3" size="sm">
-                <UserPlusIcon strokeWidth={2} className="h-4 w-4" /> Add User
-              </Button>
-            </div>
+            
           </div>
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <Tabs value="all" className="w-full md:w-max">

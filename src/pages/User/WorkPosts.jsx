@@ -6,6 +6,8 @@ import { Sidebar } from "../../components/sidebar/Sidebar";
 import { userWorksShared } from "../../services/userAPIs";
 import { useDispatch, useSelector } from "react-redux";
 import { setWorksDetails } from "../../redux/users";
+import { WorkBaseURL } from "../../constants/constants";
+import axios from "axios";
 
 function WorkPosts() {
   const user = useSelector((state) => state.user.userInfo)
@@ -28,6 +30,24 @@ function WorkPosts() {
       }
     };
 
+    
+  //API Call to search Posts 
+  const postSearch = async (value) => {
+    if (value == ""){
+      fetchWorks();
+      return
+    }else{
+      console.log(value,"e.target.valueee");
+    
+    try {
+      const response = await axios.get(`${WorkBaseURL}search_posts/${value}`);
+      console.log(response, "postsearch success");
+      setWorks(response.data.filter((work)=>work.user=user.id));
+    } catch (error) {
+      console.log(error, "postsearch error");
+    }}
+  };
+
 
   // UseEffect
   useEffect(()=>{
@@ -44,6 +64,9 @@ function WorkPosts() {
 
       <div className="flex shadow-2xl  h-[800px] -mb-48 mt-24 mx-36">
       {!isMobileView() && <Sidebar selected={"Shared Posts"} />}
+      <div className="flex flex-col">
+      <input type="text" className="ml-96 mb-5 mt-5 float-right w-80  p-2 rounded-md border border-gray-500 focus:outline-none" placeholder="Search..." 
+          onChange={(e)=>{postSearch(e.target.value)}}/>
         <div className="flex-col ml-5 w-full h-full overflow-y-scroll ">
           { works && works.length >0 ? works.map((work)=>{
             return (
@@ -56,6 +79,8 @@ function WorkPosts() {
 
       
         </div>
+        </div>
+        
       </div>
       <Footer />
     </div>

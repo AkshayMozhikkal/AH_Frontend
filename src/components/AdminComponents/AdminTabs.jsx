@@ -14,9 +14,14 @@ import { ComplaintsTable } from "./ComplaintsTable";
 import ReportGraphs from "./ReportGraphs";
 
 export function AdminTabs() {
-  const navigate = useNavigate();
-  const [table, setTable] = useState("Users");
+  
+  const [table, setTable] = useState("Reports");
   const data = [
+    {
+      label: "Reports",
+      value: "angular",
+      desc: `Overall report about the user traffic, works scheduled.`,
+    },
     {
       label: "Users",
       value: "html",
@@ -34,11 +39,7 @@ export function AdminTabs() {
       desc: `Complaints raised by users. Includes the usage difficulties, reports made on another accounts etc`,
     },
 
-    {
-      label: "Reports",
-      value: "angular",
-      desc: `Overall report about the user traffic, works scheduled.`,
-    },
+   
 
     {
       label: "Notifications",
@@ -49,7 +50,6 @@ export function AdminTabs() {
 
   const handleTabClick = (label) => {
     setTable(label);
-    // navigate(`/${label.toLowerCase()}`);
   };
 
   return (
@@ -81,11 +81,12 @@ export function AdminTabs() {
           ))}
         </TabsBody>
       </Tabs>
-
+      
+      {table == "Reports" &&  <ReportGraphs/> }
       {table == "Users" && <UsersTable />}
       {table == "Transactions" && <PaymentsTable />}
       {table == "Complaints" && <ComplaintsTable />}
-      {table == "Reports" &&  <ReportGraphs/> }
+     
     </div>
   );
 }

@@ -10,6 +10,7 @@ import {
   CardFooter,
   Typography,
   Button,
+  Input,
   Tooltip,
   Avatar,
 } from "@material-tailwind/react";
@@ -52,6 +53,24 @@ function Home() {
     }
   };
 
+  //API Call to search Posts 
+  const postSearch = async (value) => {
+    if (value == ""){
+      fetchWorks();
+      return
+    }else{
+      console.log(value,"e.target.valueee");
+    
+    
+    try {
+      const response = await axios.get(`${WorkBaseURL}search_posts/${value}`);
+      console.log(response, "postsearch success");
+      setWorks(response.data);
+    } catch (error) {
+      console.log(error, "postsearch error");
+    }}
+  };
+
   // UseEffect
   useEffect(() => {
     fetchWorks();
@@ -65,7 +84,7 @@ function Home() {
     <div>
       <Navbarr />
       <CarouselWithContent />
-      <div className="flex justify-center mb-10 ">
+      <div className="flex justify-center mb-10 mt-10 ">
         <p className="text-3xl underline underline-offset-[12px]  ">
           Popular Artisans
         </p>
@@ -111,9 +130,11 @@ function Home() {
           );
         })}
       </div>
-      <div className="flex-col bg-white sm:mx-20 border-b-8  mt-20 h-auto max-h-[950px]">
-        <div className="flex justify-center items-center border-b-8  mt-20">
-          <p className="text-2xl ">Recent Posts</p>
+      <div className="flex-col bg-white sm:mx-20 border-b-4 pb-10 mt-28 h-auto max-h-[950px]">
+        <div className="flex justify-between border-b-4 mx-8  mt-20">
+          <p className="text-2xl ml-10 ">Recent Posts</p>
+          <input type="text" className="mr-5 w-80 mb-2 p-2 rounded-2xl border border-gray-700 focus:outline-none" placeholder="Search..." 
+          onChange={(e)=>{postSearch(e.target.value)}}/>
           
         </div>
         <div className="flex-col bg-gray-50 mt-16 h-[700px] mx-20 overflow-y-scroll">

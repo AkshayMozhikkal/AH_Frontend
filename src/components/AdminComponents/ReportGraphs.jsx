@@ -2,7 +2,7 @@ import BarGraph from './Graphs/BarGraph'
 import PieChart from './Graphs/PieChart'
 
 function ReportGraphs() {
-  const barInstance = new Bar();
+  
   
 
   return (
