@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/logos/logo.png"
+import logo from "../../assets/images/logos/Logo.png"
 import {
   Navbar,
   Collapse ,
@@ -7,8 +7,6 @@ import {
   Button,
   IconButton,
   Menu,
-  Input,
-  Badge,
   Tooltip,
 } from "@material-tailwind/react";
 
@@ -117,7 +115,7 @@ const profileMenuItems = [
     const closeMenu = () => setIsMenuOpen(false);
    
     return (
-       <Badge content="5" withBorder>
+      
           <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
             <MenuHandler>
               <Button
@@ -190,7 +188,7 @@ const profileMenuItems = [
               })}
             </MenuList>
           </Menu>
-       </Badge>   
+        
     );
   }
 
