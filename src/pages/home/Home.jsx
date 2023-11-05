@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Navbarr } from "../../components/navbar/navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { CarouselWithContent } from "../../components/Carousel/Carousel";
-import { PopularArtisan } from "../../components/Cards/PopularArtisans";
 import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
   Typography,
   Button,
-  Input,
-  Tooltip,
   Avatar,
 } from "@material-tailwind/react";
-import Heart from "react-heart";
 import { UserPosts } from "../../components/Posts/UserPosts";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import axios from "axios";
 import { WorkBaseURL, userBaseURL } from "../../constants/constants";
 import NoPropic from "../../assets/images/static/default-user-icon-8.jpg";
 import { useNavigate } from "react-router-dom";
+import { Navbarr } from "../../components/navbar/Navbar";
 
 function Home() {
   const user = useSelector((state) => state.user.userInfo);

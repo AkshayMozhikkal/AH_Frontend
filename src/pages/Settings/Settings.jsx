@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Footer } from "../../components/Footer/Footer";
-import { Navbarr } from "../../components/navbar/navbar";
 import { Sidebar } from "../../components/sidebar/Sidebar";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { userChangePassword } from "../../services/userAPIs";
 import { Input } from "@material-tailwind/react";
+import { Navbarr } from "../../components/navbar/Navbar";
 
 function Settings() {
   const loginedUser = useSelector((state) => state.user.userInfo);

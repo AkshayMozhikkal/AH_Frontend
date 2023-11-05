@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Navbarr } from "../../components/navbar/navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import jwtDecode from "jwt-decode";
@@ -8,6 +7,7 @@ import { WorkBaseURL } from "../../constants/constants";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { Sidebar } from "../../components/sidebar/Sidebar";
+import { Navbarr } from "../../components/navbar/Navbar";
 
 function CreatePost() {
   const [user, setUser] = useState("");

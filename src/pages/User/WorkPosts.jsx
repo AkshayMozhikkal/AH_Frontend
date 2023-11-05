@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setWorksDetails } from "../../redux/users";
 import { WorkBaseURL } from "../../constants/constants";
 import axios from "axios";
-import { Navbarr } from "../../components/navbar/navbar";
+import { Navbarr } from "../../components/navbar/Navbar";
 
 function WorkPosts() {
   const user = useSelector((state) => state.user.userInfo)

@@ -10,20 +10,13 @@ import Loader from "../../components/Loading/Loading";
 import { useRef } from "react";
 import {
   Avatar,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
   Dialog,
   DialogHeader,
-  Textarea,
-  Tooltip,
-  Typography,
 } from "@material-tailwind/react";
 import Heart from "react-heart";
 import WorkDialog from "../../components/Posts/WorkDialog";
 import ConfirmationModal from "../../components/DialogueBoxes/ConfirmationModal";
-import { Navbarr } from "../../components/navbar/navbar";
+import { Navbarr } from "../../components/navbar/Navbar";
 
 function PeopleProfile() {
   const targetDivRef = useRef();

@@ -14,7 +14,8 @@ import { ConnectionBaseURL, userBaseURL } from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
-import { Navbarr } from "../../components/navbar/navbar";
+import { Navbarr } from '../../components/navbar/Navbar'
+
 
 function People() {
   const [people, setPeople] = useState([]);
