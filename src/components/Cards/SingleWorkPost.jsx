@@ -20,7 +20,7 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { WorkBaseURL, userBaseURL } from "../../constants/constants";
+import { WorkBaseURL } from "../../constants/constants";
 import { toast } from "react-toastify";
 import { setWorksDetails } from "../../redux/users";
 import Heart from "react-heart";

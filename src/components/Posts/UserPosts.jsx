@@ -6,14 +6,12 @@ import {
   Typography,
   Avatar,
   Tooltip,
-  Textarea,
 } from "@material-tailwind/react";
 import NoImage from "../../assets/images/static/No_Image.jpg";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { WorkBaseURL } from "../../constants/constants";
 import axios from "axios";
-import { Input } from "postcss";
 import Heart from "react-heart";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";

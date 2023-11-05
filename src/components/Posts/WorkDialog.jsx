@@ -1,6 +1,5 @@
 import { Avatar, Card, CardBody, CardFooter, CardHeader, Dialog, Textarea, Tooltip, Typography } from '@material-tailwind/react';
 import axios from 'axios';
-import React, { useState } from 'react';
 import Heart from 'react-heart';
 import { WorkBaseURL } from '../../constants/constants';
 import NoImage from "../../assets/images/static/No_Image.jpg";

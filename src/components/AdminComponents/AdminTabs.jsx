@@ -9,7 +9,6 @@ import {
 import { UsersTable } from "./UsersTable";
 import { PaymentsTable } from "./PaymentsTable";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ComplaintsTable } from "./ComplaintsTable";
 import ReportGraphs from "./ReportGraphs";
 
