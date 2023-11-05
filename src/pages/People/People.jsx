@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Navbarr } from "../../components/navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import {
   Card,
@@ -15,6 +14,7 @@ import { ConnectionBaseURL, userBaseURL } from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
+import { Navbarr } from "../../components/navbar/navbar";
 
 function People() {
   const [people, setPeople] = useState([]);

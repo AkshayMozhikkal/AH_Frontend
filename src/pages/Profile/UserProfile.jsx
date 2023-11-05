@@ -1,8 +1,8 @@
 import React from 'react'
 import { Footer } from '../../components/Footer/Footer'
 import ProfileComponent from '../../components/Profiles/ProfileComponent'
-import { Navbarr } from '../../components/navbar/Navbar'
 import { Sidebar } from '../../components/sidebar/Sidebar'
+import { Navbarr } from '../../components/navbar/navbar'
 
 function UserProfile() {
   return (

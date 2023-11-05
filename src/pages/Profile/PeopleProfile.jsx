@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Navbarr } from "../../components/navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import axios from "axios";
 import { ConnectionBaseURL, WorkBaseURL, userBaseURL } from "../../constants/constants";
@@ -24,6 +23,7 @@ import {
 import Heart from "react-heart";
 import WorkDialog from "../../components/Posts/WorkDialog";
 import ConfirmationModal from "../../components/DialogueBoxes/ConfirmationModal";
+import { Navbarr } from "../../components/navbar/navbar";
 
 function PeopleProfile() {
   const targetDivRef = useRef();

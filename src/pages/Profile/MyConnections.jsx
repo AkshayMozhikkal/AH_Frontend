@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Navbarr } from '../../components/navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
 import { Sidebar } from '../../components/sidebar/Sidebar'
 import { Avatar } from '@material-tailwind/react'
@@ -16,6 +15,7 @@ import { toast } from 'react-toastify'
 import { userBaseURL } from '../../constants/constants'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Navbarr } from '../../components/navbar/navbar';
 
 
 
@@ -97,7 +97,7 @@ function MyConnections() {
 
   return (
     <div>
-      <Navbarr/>
+      <Navbarr />
       <div className='flex mt-24 mx-36'>
         <Sidebar selected={"Connections"}/>
         <div className='flex-col w-full p-2 shadow-2xl border-2 max-h-[850px] overflow-y-scroll '>

@@ -1,5 +1,4 @@
-import { Avatar, List, ListItem } from "@material-tailwind/react";
-import { ListItemIcon, ListItemText, TextField } from "@material-ui/core";
+import { Avatar, Input, List, ListItem } from "@material-tailwind/react";
 import React, { useEffect, useState } from "react";
 import SingleChat from "./SingleChat";
 import { ConnectionBaseURL } from "../../constants/constants";
@@ -58,7 +57,7 @@ function ChatList() {
         <div>
           <List className="w-96 border-2 rounded-xl shadow-2xl h-full overflow-y-scroll">
             <ListItem className="mb-7 sticky z-10">
-              <TextField
+              <Input
                 onChange={(e)=>search(e)}
                 value={searchKey}
                 id="outlined-basic-email"
@@ -72,39 +71,35 @@ function ChatList() {
               return connection.from_users.id === loginedUser.id 
                  ? (
                 <ListItem button key="RemySharp" onClick={()=>setSelectedUser(connection.to_users)}>
-                  <ListItemIcon>
+                  
                     <Avatar
+                      className="mr-5"
                       alt="Remy Sharp"
                       src={connection.to_users.profile_image}
                     />
-                  </ListItemIcon>
-                  <ListItemText>
                     {connection.to_users.first_name}{" "}
                     {connection.to_users.last_name}
-                  </ListItemText>
-                  <ListItemText secondary="online" align="right" />
+                  
                 </ListItem>
               ) : (
                 <ListItem button key="RemySharp" onClick={()=>setSelectedUser(connection.from_users)}>
-                  <ListItemIcon>
+                  
                     <Avatar
+                      className="mr-5"
                       alt="Remy Sharp"
                       src={connection.from_users.profile_image}
                     />
-                  </ListItemIcon>
-                  <ListItemText>
                     {connection.from_users.first_name}{" "}
                     {connection.from_users.last_name}
-                  </ListItemText>
-                  <ListItemText secondary="online" align="right" />
+                
                 </ListItem>
               );
             }):
             (
               <ListItem button key="RemySharp" >
-                <ListItemText>
+               
                  {searchKey !="" ? `No related users for ${searchKey}` : 'No connections to chat'}
-                </ListItemText>
+                
                 
               </ListItem>
             )

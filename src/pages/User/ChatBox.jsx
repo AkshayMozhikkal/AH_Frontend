@@ -2,15 +2,15 @@
 import React from 'react'
 import SingleChat from '../../components/Chat/SingleChat'
 import ChatList from '../../components/Chat/ChatList'
-import { Navbarr } from '../../components/navbar/Navbar'
 import { Footer } from '../../components/Footer/Footer'
 import { Sidebar } from '../../components/sidebar/Sidebar'
+import { Navbarr } from '../../components/navbar/navbar'
 
 
 function ChatBox() {
   return (
     <div>
-    <Navbarr/>
+    <Navbarr />
     <div className='flex mt-24 mx-36'>
         <Sidebar selected={"Inbox"}/>
         
