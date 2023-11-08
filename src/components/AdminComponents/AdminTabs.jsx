@@ -4,17 +4,18 @@ import {
   TabsBody,
   Tab,
   TabPanel,
-  Navbar,
 } from "@material-tailwind/react";
 import { UsersTable } from "./UsersTable";
 import { PaymentsTable } from "./PaymentsTable";
 import { useState } from "react";
 import { ComplaintsTable } from "./ComplaintsTable";
 import ReportGraphs from "./ReportGraphs";
+import { BannerManagement } from "./BannerManagement";
 
 export function AdminTabs() {
   
   const [table, setTable] = useState("Reports");
+  
   const data = [
     {
       label: "Reports",
@@ -27,24 +28,24 @@ export function AdminTabs() {
       desc: `List of users currently using the website. The list includes both Artisans and common users.`,
     },
     {
-      label: "Transactions",
+      label: "Banner Management",
       value: "react",
-      desc: `Payments made by users to Artisans upon confirmation of work contract.`,
+      desc: `Edit and Manage Banners of Homepage`,
     },
 
-    {
-      label: "Complaints",
-      value: "vue",
-      desc: `Complaints raised by users. Includes the usage difficulties, reports made on another accounts etc`,
-    },
+    // {
+    //   label: "Complaints",
+    //   value: "vue",
+    //   desc: `Complaints raised by users. Includes the usage difficulties, reports made on another accounts etc`,
+    // },
 
    
 
-    {
-      label: "Notifications",
-      value: "svelte",
-      desc: `notifications & reminders about pending tasks.`,
-    },
+    // {
+    //   label: "Notifications",
+    //   value: "svelte",
+    //   desc: `notifications & reminders about pending tasks.`,
+    // },
   ];
 
   const handleTabClick = (label) => {
@@ -53,7 +54,7 @@ export function AdminTabs() {
 
   return (
     <div className="lg:px-32 mt-14 sm:min-w-fit  ">
-      <Tabs id="custom-animation" value="html">
+      <Tabs id="custom-animation" value='angular'>
         <TabsHeader>
           {data.map(({ label, value }) => (
             <Tab
@@ -66,7 +67,6 @@ export function AdminTabs() {
           ))}
         </TabsHeader>
         <TabsBody
-          onClick={() => console.log(table)}
           animate={{
             initial: { y: 250 },
             mount: { y: 0 },
@@ -85,6 +85,7 @@ export function AdminTabs() {
       {table == "Users" && <UsersTable />}
       {table == "Transactions" && <PaymentsTable />}
       {table == "Complaints" && <ComplaintsTable />}
+      {table == "Banner Management" && <BannerManagement />}
      
     </div>
   );

@@ -22,9 +22,10 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { userBaseURL } from "../../constants/constants";
+import { userBaseURL, userDetailsURL } from "../../constants/constants";
 import axios from "axios";
 import { toast } from "react-toastify";
+import CustomClockLoader from "../Loading/LoadingClock";
 
 const TABS = [
   {
@@ -47,27 +48,40 @@ const TABLE_HEAD = ["User", "Contact No:", "Status", "Type", "Action"];
 
 export function UsersTable() {
   const [userData, setUserData] = useState([]);
+  const [data, setData] = useState({});
   const [open, setOpen] = useState(false);
   const [userDetails, setUserDetails] = useState([]);
   const [users, setUsers] = useState([])
   const [update, setUpdate] = useState(false);
   const [searchKey, setSearchKey] = useState("");
+  const [loading, setLoading] = useState(false);
  
   const handleUpdate = () => setUpdate((cur) => !cur);
+  const handleLoading = () => setLoading((cur) => !cur);
 
   useEffect(() => {
     fetchData();
   }, [userDetails, update]);
 
   // Fetch User data
-   const fetchData = async () => {
+   const fetchData = async (NextorPrev) => {
+    let url= userDetailsURL
+    if(NextorPrev){
+      url=NextorPrev
+    }else{
+      url=userDetailsURL
+    }
+    handleLoading()
     try {
-      const response = await axios.get(userBaseURL);
-      console.log(response.data);
-      setUsers(response.data)
-      setUserData(response.data);
+      const response = await axios.get(url);
+      console.log(response.data, "usersssssssssss");
+      setData(response.data)
+      setUsers(response.data.results)
+      setUserData(response.data.results);
+      handleLoading()
     } catch (error) {
       console.log(error.response, "Errorrr");
+      handleLoading()
     }
   };
 
@@ -75,14 +89,20 @@ export function UsersTable() {
 
   // Block or Unblock
   const blockUnblock = async (value, userId) => {
+    handleLoading()
     try {
       const response = await axios.patch(
-        `http://127.0.0.1:8000/user/edit_profile/${userId}/`,
+        `${userBaseURL}block_or_unblock/${userId}/`,
         { is_active: value }
+        
       );
       setUserDetails([]);
+      fetchData()
+      handleLoading()
+      toast.success("Done..!");
     } catch (error) {
       setUserDetails([]);
+      handleLoading()
     }
   };
 
@@ -95,12 +115,15 @@ export function UsersTable() {
 
   // Search People
   const search = async ()=>{
+    handleLoading()
     try {
       const res = await axios.get(`${userBaseURL}search_people/${searchKey}/`)
       console.log(res);
       setUserData(res.data)
+      handleLoading()
     } catch (error) {
       console.log(error, 'searcherror');
+      handleLoading()
       
     }
     
@@ -109,6 +132,7 @@ export function UsersTable() {
 
   return (
     <div className="px-2 mt-8 sm:w-full mb-36">
+     {loading && <CustomClockLoader />}
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Block Or Unblock User</DialogHeader>
         <DialogBody divider>
@@ -130,7 +154,7 @@ export function UsersTable() {
             onClick={() => {
               blockUnblock(userDetails[0], userDetails[1]);
               setOpen(false);
-              toast.success("Done..!");
+              
             }}
           >
             <span>Confirm</span>
@@ -162,7 +186,7 @@ export function UsersTable() {
             <div className="w-full md:w-72">
               <Input
                 label="Search"
-                icon={<MagnifyingGlassIcon className="h-5 w-5" onClick={()=>search()}/>}
+                icon={<MagnifyingGlassIcon className="h-5 w-5 cursor-pointer" onClick={()=>search()}/>}
                 onChange={(e)=>setSearchKey(e.target.value)}
               />
             </div>
@@ -264,7 +288,7 @@ export function UsersTable() {
                           <div
                             className="w-max"
                             onClick={() => {
-                              handleOpen("False", id, username);
+                              handleOpen(false, id, username);
                             }}
                           >
                             <Chip
@@ -279,7 +303,7 @@ export function UsersTable() {
                           <div
                             className="w-max"
                             onClick={() => {
-                              handleOpen("True", id, username);
+                              handleOpen(true, id, username);
                             }}
                           >
                             <Chip
@@ -325,13 +349,15 @@ export function UsersTable() {
         </CardBody>
         <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
           <Typography variant="small" color="blue-gray" className="font-normal">
-            Page 1 of 10
+            Users {data?.results?.length} of {data.count}
           </Typography>
           <div className="flex gap-2">
-            <Button variant="outlined" size="sm">
+            <Button variant="outlined" size="sm"
+            onClick={()=>fetchData(data.previous)}>
               Previous
             </Button>
-            <Button variant="outlined" size="sm">
+            <Button variant="outlined" size="sm"
+            onClick={()=>fetchData(data.next)}>
               Next
             </Button>
           </div>

@@ -128,7 +128,7 @@ function Home() {
       <div className="flex-col bg-white sm:mx-20 border-b-4 pb-10 mt-28 h-auto max-h-[950px]">
         <div className="flex justify-between border-b-4 mx-8  mt-20">
           <p className="text-2xl ml-10 ">Recent Posts</p>
-          <input type="text" className="mr-5 w-80 mb-2 p-2 rounded-2xl border border-gray-700 focus:outline-none" placeholder="Search..." 
+          <input type="text" className="mr-5 w-80 mb-2 p-2 rounded-2xl border border-gray-700 focus:outline-none" placeholder="Search by location,name etc.." 
           onChange={(e)=>{postSearch(e.target.value)}}/>
           
         </div>

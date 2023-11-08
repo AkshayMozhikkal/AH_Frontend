@@ -1,15 +1,31 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
-import samuel from "../../assets/images/static/samuel.jpg"
-import artist1 from "../../assets/images/static/an_artist.jpg"
-import artist3 from "../../assets/images/static/artist3.jpg"
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { componentsBaseURL } from "../../constants/constants";
 
  
 export function CarouselWithContent() {
+  const [bannerData, setBannerData] = useState([])
+
+  // fetch Banners
+  const fetchBanners = async()=>{
+    try {
+      const res = await axios.get(`${componentsBaseURL}banners/`)
+      setBannerData(res.data)
+    } catch (error) {
+      console.log(error);   
+    }
+  }
+
+  useEffect(()=>{
+    fetchBanners();
+  },[])
   return (
     <Carousel className="xl ">
+      {bannerData.map((banner)=>{return(
       <div className="relative h-full w-full">
         <img
-          src={samuel}
+          src={banner.image}
           alt="image 1"
           className="h-full w-full"
         />
@@ -20,15 +36,14 @@ export function CarouselWithContent() {
               color="white"
               className="mb-4 text-3xl md:text-4xl lg:text-5xl"
             >
-              Crafting Dreams, Forging Bonds, Creating Art - Where Artisans Unite.
+             {banner.headline}
             </Typography>
             <Typography
               variant="lead"
               color="white"
               className="mb-12 opacity-80"
             >
-              Welcome to ArtisanHub. Create your account, connect with artisans, Make 
-              collaborations on work. Scroll down and see some posts shared..
+              {banner.description}
             </Typography>
             <div className="flex justify-center gap-2">
               <Button size="lg" color="white">
@@ -41,74 +56,8 @@ export function CarouselWithContent() {
           </div>
         </div>
       </div>
-      <div className="relative h-full w-full">
-        <img
-        src={artist1}  
-        alt="image 2"
-          className="h-full w-full "
-        />
-        <div className="absolute inset-0 grid h-full w-full items-center bg-black/75">
-          <div className="w-3/4 pl-12 md:w-2/4 md:pl-20 lg:pl-32">
-            <Typography
-              variant="h1"
-              color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-            >
-              Crafting Dreams, Forging Bonds, Creating Art - Where Artisans Unite.
-            </Typography>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80"
-            >
-              Welcome to ArtisanHub. Create your account, connect with artisans, Make 
-              collaborations on work. Scroll down and see some posts shared..
-            </Typography>
-            <div className="flex gap-2">
-              <Button size="lg" color="white">
-                Explore
-              </Button>
-              <Button size="lg" color="white" variant="text">
-                Gallery
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="relative h-full w-full">
-        <img
-           src={artist3}         
-            alt="image 3"
-          className="h-full w-full "
-        />
-        <div className="absolute inset-0 grid h-full w-full items-end bg-black/75">
-          <div className="w-3/4 pl-12 pb-12 md:w-2/4 md:pl-20 md:pb-20 lg:pl-32 lg:pb-32">
-            <Typography
-              variant="h1"
-              color="white"
-              className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-            >
-              Crafting Dreams, Forging Bonds, Creating Art - Where Artisans Unite.
-            </Typography>
-            <Typography
-              variant="lead"
-              color="white"
-              className="mb-12 opacity-80"
-            >
-              Welcome to ArtisanHub. Create your account, connect with artisans, Make 
-              collaborations on work. Scroll down and see some posts shared..
-            </Typography>
-            <div className="flex gap-2">
-              <Button size="lg" color="white">
-                Explore
-              </Button>
-              <Button size="lg" color="white" variant="text">
-                Gallery
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      )})}
+      
     </Carousel>
   );
 }

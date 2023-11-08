@@ -5,7 +5,6 @@ import { CommonNavbar } from '../components/navbar/CommonNavbar';
 import { Footer } from '../components/Footer/Footer';
 import { useLocation } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
-import { Input } from 'postcss';
 
 
 const ForgotPasswordForm = () => {
@@ -22,7 +21,7 @@ const ForgotPasswordForm = () => {
     handleLoading();
 
     try {
-      const response = await axios.post(`${userBaseURL}password_reset/`, { email });
+      const response = await axios.post(`${userBaseURL}forgotpassword/`, { email:email });
       if (response.status === 200) {
         setMessage(`Password reset email sent. check your mailbox (${email})`);
         handleLoading()
@@ -32,7 +31,7 @@ const ForgotPasswordForm = () => {
       }
     } catch (error) {
         console.log(error);
-      setMessage('An error occurred while sending the request.');
+      setMessage(error.response.data.message);
       handleLoading()
     }
   };

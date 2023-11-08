@@ -11,6 +11,7 @@ import ProtectedRoutes from './routes/protected/ProtectedRoutes';
 import People from './pages/People/People';
 import PeopleProfile from './pages/Profile/PeopleProfile';
 import ForgotPasswordForm from './pages/ForgotPassword';
+import ResetPassword from './pages/Resetpassword';
 
  
 
@@ -31,6 +32,7 @@ function App() {
             <Route element={<People/> } path = '/people' />
             <Route element={<PeopleProfile/> } path = '/user_profile/:userID' />
             <Route element={<ForgotPasswordForm />} path ='/forgot_password'/>
+            <Route element={<ResetPassword />} path ='/resetpassword'/>
             
    
         </Routes>
