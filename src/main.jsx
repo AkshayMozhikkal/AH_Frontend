@@ -14,10 +14,8 @@ import { googleClientID } from "./constants/constants";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={Store}>
   <GoogleOAuthProvider clientId={googleClientID}>
-  <React.StrictMode>
-   
-      <App />
-    
+  <React.StrictMode>  
+      <App />   
   </React.StrictMode>
   </GoogleOAuthProvider>
   </Provider>
