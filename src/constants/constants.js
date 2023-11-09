@@ -8,6 +8,7 @@ export const userLoginURL = import.meta.env.VITE_userLoginURL;
 export const baseURL = import.meta.env.VITE_baseURL;
 export const componentsBaseURL = import.meta.env.VITE_componentsBaseURL;
 export const chatBaseURL = import.meta.env.VITE_chatBaseURL;
+export const socketURL = import.meta.env.VITE_socketURL;
 
 
 export const WorkBaseURL = import.meta.env.VITE_WorkBaseURL;

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useRef } from "react";
 import axios from "axios";
-import { baseURL, singleUserURL, wsApiUrl } from "../../constants/constants";
+import { baseURL, singleUserURL, socketURL, wsApiUrl } from "../../constants/constants";
 import { useEffect } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
@@ -41,7 +41,7 @@ function SingleChat({ user }) {
         }
       });
     const client = new W3CWebSocket(
-      `${wsApiUrl}/ws/chat/${senderdetails?.id}/?${recipientdetails.id}`
+      `${wsApiUrl}${socketURL}${senderdetails?.id}/?${recipientdetails.id}`
     );
     setClientState(client);
     client.onopen = () => {
