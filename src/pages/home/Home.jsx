@@ -87,7 +87,7 @@ function Home() {
       <div className="flex gap-3  p-3 shadow-2xl rounded-lg border-zinc-950 overflow-x-scroll sm:mx-20">
         {artisans.map((artisan) => {
           return (
-            <div className="w-80 h-80 mb-7 hover:scale-105 transition-transform ">
+            <div className="w-80 h-80 mb-7 hover:scale-105 transition-transform " key={artisan.id}>
               <Card className="w-64 h-80 bg-white border-2 shadow-md  shadow-blue-100 hover:bg-blue-50">
                 <CardHeader floated={false} className="h-44">
                   <img
@@ -107,7 +107,7 @@ function Home() {
                     className="font-bold"
                     textGradient
                   >
-                    <i class="fa fa-palette text-xs">{artisan.art}</i>
+                    <i className="fa fa-palette text-xs">{artisan.art}</i>
                   </Typography>
                   <Button
                     className="mt-2 bg-transparent rounded-full normal-case font-normal border-2 border-blue-100 text-blue-800"
@@ -117,7 +117,7 @@ function Home() {
                         : navigate(`/user_profile/${artisan.id}`);
                     }}
                   >
-                    Profile <i class="fas fa-sharp fa-light fa-user-plus"></i>
+                    Profile <i className="fas fa-sharp fa-light fa-user-plus"></i>
                   </Button>
                 </CardBody>
               </Card>
@@ -133,9 +133,9 @@ function Home() {
           
         </div>
         <div className="flex-col bg-gray-50 mt-16 h-[700px] mx-20 overflow-y-scroll">
-          {works.map((work) => {
+          {works.map((work,index) => {
             return (
-              <div className="mx-20 my-16 flex-col ">
+              <div className="mx-20 my-16 flex-col " key={index}>
                 <div className="cursor-pointer text-blue-700 -mb-7 ml-10" onClick={() => {
                       work.artist.id == user.id
                         ? navigate("/profile")
@@ -150,7 +150,7 @@ function Home() {
                   {work.artist.username}
                 </div>
 
-                <UserPosts workData={work} trig={triggerFunction} />
+                <UserPosts  workData={work} trig={triggerFunction} />
               </div>
             );
           })}

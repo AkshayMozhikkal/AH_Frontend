@@ -157,7 +157,7 @@ export function UserPosts({ workData, trig }) {
           {workData && workData.comments && workData.comments.length > 0 ? (
             workData.comments.map((comment) => {
               return (
-                <div className="flex w-full gap-1 p-2 mt-2 h-28  ">
+                <div className="flex w-full gap-1 p-2 mt-2 h-28  " key={comment.id}>
                   <Avatar
                     variant="circular"
                     alt="user 1"

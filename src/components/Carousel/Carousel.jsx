@@ -23,7 +23,7 @@ export function CarouselWithContent() {
   return (
     <Carousel className="xl ">
       {bannerData.map((banner)=>{return(
-      <div className="relative h-full w-full">
+      <div className="relative h-full w-full" key={banner.id}>
         <img
           src={banner.image}
           alt="image 1"
