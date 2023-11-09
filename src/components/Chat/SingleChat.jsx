@@ -83,7 +83,7 @@ function SingleChat({ user }) {
     try {
       const res = await axios.get(`${singleUserURL}${user?.id}/`);
       setrecipientdetails(res.data);
-      console.log(res, "successuser");
+      
     } catch (error) {
       console.log(error, "userfetcherror");
     }

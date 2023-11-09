@@ -52,7 +52,7 @@ function People() {
     setSearched(e.target.value)
     try {
       const res = await axios.get(`${userBaseURL}citywise_filter/${e.target.value}/`)
-      console.log(res.data,"filteredpeople");
+      
       setPeople(res.data)     
     } catch (error) {
       console.log(error,"citysearcherrorrr");
@@ -64,7 +64,7 @@ function People() {
   const fetchPeople = async () => {
     try {
       const res = await axios.get(userBaseURL);
-      console.log(res.data, "people");
+     
       setPeople(res.data);
     } catch (error) {
       console.log(error);
@@ -77,7 +77,7 @@ function People() {
       const res = await axios.get(
         `${ConnectionBaseURL}user_connections/${loginedUser.id}`
       );
-      console.log(res.data, "connections");
+      
       setConnections(res.data);
     } catch (error) {
       console.log(error, "connectionsfetcherror");
@@ -113,7 +113,7 @@ function People() {
         handleLoading();
         const res = await axios.get(`${userBaseURL}search_people/${key}/`);
         setPeople(res.data);
-        console.log(res.data);
+        
         handleLoading();
       } catch (error) {
         console.log(error);

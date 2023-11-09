@@ -11,7 +11,7 @@ function Donut() {
   const fetchUsers= async() =>{
     try {
       const res = await axios.get(`${userBaseURL}`)
-      console.log(res?.data,"UserFetchSuccess");
+     
       const userCount = res?.data?.filter((user)=>!user.is_artisan) 
       const artisanCount = res?.data?.filter((user)=>user.is_artisan)
       

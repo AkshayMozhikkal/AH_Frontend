@@ -32,8 +32,7 @@ const Bar = () => {
     console.log(year,month,"year and month");
     try {
       const res = await axios.get(`${WorkBaseURL}post_count/${year}/${month}`);
-      console.log("successbar", res.data);
-
+      
       const keyss = Object.keys(res.data);
       const valuess = Object.values(res.data);
   

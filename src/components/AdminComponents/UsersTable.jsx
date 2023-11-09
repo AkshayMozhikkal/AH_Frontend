@@ -74,7 +74,7 @@ export function UsersTable() {
     handleLoading()
     try {
       const response = await axios.get(url);
-      console.log(response.data, "usersssssssssss");
+     
       setData(response.data)
       setUsers(response.data.results)
       setUserData(response.data.results);
@@ -118,7 +118,7 @@ export function UsersTable() {
     handleLoading()
     try {
       const res = await axios.get(`${userBaseURL}search_people/${searchKey}/`)
-      console.log(res);
+      
       setUserData(res.data)
       handleLoading()
     } catch (error) {

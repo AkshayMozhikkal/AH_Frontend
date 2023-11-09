@@ -87,7 +87,7 @@ function PeopleProfile() {
     handleLoading();
     try {
       const res = await CheckConnection(userID);
-      console.log(res, "connectionchecksuccess");
+      
       setConnection(res.data);
       handleLoading();
     } catch (error) {
@@ -105,7 +105,7 @@ function PeopleProfile() {
         from_user: loginedUser.id,
         to_user: userData.id,
       });
-      console.log(res, "resquestsuccess");
+     
       handleUpdate();
       toast.success("Request send..");
     } catch (error) {
@@ -122,7 +122,7 @@ function PeopleProfile() {
       const res = await axios.delete(
         `${userBaseURL}connections/remove_connection/${id}/`
       );
-      console.log(res, "removeconnectionsuccess");
+      
       handleUpdate();
       toast.info("Connection Removed");
     } catch (error) {
@@ -139,7 +139,7 @@ function PeopleProfile() {
         `${userBaseURL}connections/connection_handle/${connectionId}/`,
         { ...connection, status: "a" }
       );
-      console.log(res, "acceptconnectionsuccess");
+      
       handleUpdate();
       toast.info("Connection Added");
     } catch (error) {
@@ -162,9 +162,9 @@ function PeopleProfile() {
    
   // set new post
   const setnewpost = ()=>{
-    console.log(works, workpost?.id, "workssarrayyy");
+    
     const post =  works?.find((work) => work.id == workpost?.id)
-    console.log(post,"poooooooooost");
+    
     setWorkpost(post);
   }
 
@@ -185,7 +185,7 @@ function PeopleProfile() {
         commented_by: loginedUser.id,
         text: comment,
       });
-      console.log(res, "Commentpostsuccess");
+     
       setNewComment("");                        
     } catch (error) {
       console.log(error, "commentposterror");
@@ -205,7 +205,7 @@ function PeopleProfile() {
       const res = await axios.delete(
         `${userBaseURL}work/delete_comment/${commentID}`
       );
-      console.log(res, "deletesuccess");
+      
     } catch (error) {
       console.log(error, "deleteError");
       
@@ -222,7 +222,7 @@ function PeopleProfile() {
         liked_by: loginedUser.id,
       });
       setworkdata()
-      console.log(res, "add_like_success");
+     
     } catch (error) {
       console.log(error, "add_likeerrorrr");
       if (error.response.data['liked_by']){
@@ -240,7 +240,7 @@ function PeopleProfile() {
         data: { post: workPost.id, liked_by: loginedUser.id },
       });
       setworkdata()
-      console.log(res, "removeLikesuccess");
+     
     } catch (error) {
       console.log(error, "removeLikeerrorrr");
       toast.error("Please try again..");
@@ -250,7 +250,7 @@ function PeopleProfile() {
   const search = async ()=>{
     try {
       const res = await axios.get(`${ConnectionBaseURL}search_connection/${userID}/${searchKey}`)
-      console.log(res);
+      
       setConnList(res.data)
     } catch (error) {
       console.log(error, 'searcherror');

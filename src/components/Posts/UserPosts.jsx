@@ -24,7 +24,7 @@ export function UserPosts({ workData, trig }) {
 
   // New Comment
   const newComment = async (workPost) => {
-    console.log(workPost, "commenting on");
+   
     if(comment == ""){
       toast.info("Please type something to comment")
     }
@@ -34,7 +34,7 @@ export function UserPosts({ workData, trig }) {
         commented_by: user.id,
         text: comment,
       });
-      console.log(res, "Commentpostsuccess");
+     
       setNewComment("");
       trig();
       toast.info("Comment Added");
@@ -56,7 +56,7 @@ export function UserPosts({ workData, trig }) {
       const res = await axios.delete(
         `${WorkBaseURL}delete_comment/${commentID}`
       );
-      console.log(res, "deletesuccess");
+      
       trig();
       toast.info("Comment Removed");
     } catch (error) {
@@ -73,7 +73,7 @@ export function UserPosts({ workData, trig }) {
     
     try {
       const res = await axios.post(`${WorkBaseURL}new_like/`,{post:workPost.id, liked_by:user.id})
-      console.log(res,"add_like_success");
+      
       trig();
       
       
@@ -89,11 +89,11 @@ export function UserPosts({ workData, trig }) {
 
   // Remove Like 
   const removeLike = async (workPost) =>{
-    console.log(workPost);
+    
     
     try {
       const res = await axios.delete(`${WorkBaseURL}remove_like/`,{data:{post:workPost.id, liked_by:user.id}})
-      console.log(res,"removeLikesuccess");
+      
       trig();
  
     } catch (error) {

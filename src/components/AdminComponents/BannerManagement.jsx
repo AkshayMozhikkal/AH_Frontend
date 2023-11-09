@@ -57,7 +57,7 @@ export function BannerManagement() {
         formData.append("description", banner.description);
         formData.append("headline", banner.headline);  
         data =formData    
-        console.log(data,"dataaaaaaaaaaaaaaaa");
+        
     }else{
         toast.error("Image is missing")
         return
@@ -76,7 +76,7 @@ export function BannerManagement() {
   }
      // Edit Banner
   const editBanner = async()=>{
-    console.log(banner,"selected banner");
+   
     let data = banner
    
    

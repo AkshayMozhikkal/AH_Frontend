@@ -19,7 +19,7 @@ function ChatList() {
       const res = await axios.get(
         `${ConnectionBaseURL}user_connections/${loginedUser.id}`
       );
-      console.log(res.data, "connections");
+      
       setConnections(res?.data?.filter((conn)=>conn.status=='a'));
     } catch (error) {
       console.log(error, "connectionsfetcherror");
@@ -35,7 +35,7 @@ function ChatList() {
     }else{
     try {
       const res = await axios.get(`${ConnectionBaseURL}search_connection/${loginedUser.id}/${searchKey}`)
-      console.log(res);
+     
       setConnections(res.data)
     } catch (error) {
       console.log(error, 'searcherror');

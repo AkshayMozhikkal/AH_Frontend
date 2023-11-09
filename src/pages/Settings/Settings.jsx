@@ -20,7 +20,7 @@ function Settings() {
   });
 
   const submitHandle = async () => {
-    console.log(loginedUser, "user");
+    
     if (data?.newPass != data?.newPassConf) {
       toast.error("Passwords Missmatch, Enter Again..");
       setData({ ...data, newPass: "", newPassConf: "" });
@@ -28,7 +28,7 @@ function Settings() {
     } else {
       try {
         const res = await userChangePassword(data);
-        console.log(res);
+       
         if (res?.status == 200) {
           toast.success(res.data["message"]);
           setData({ oldPass: "", newPass: "", newPassConf: "" });

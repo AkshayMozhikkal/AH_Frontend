@@ -41,7 +41,6 @@ function Home() {
   const artisanFetch = async () => {
     try {
       const response = await axios.get(`${userBaseURL}artisans/`);
-      console.log(response, "artisanss");
       setArtisans(response.data);
     } catch (error) {
       console.log(error, "artisanfetch error");
@@ -59,7 +58,6 @@ function Home() {
     
     try {
       const response = await axios.get(`${WorkBaseURL}search_posts/${value}`);
-      console.log(response, "postsearch success");
       setWorks(response.data);
     } catch (error) {
       console.log(error, "postsearch error");

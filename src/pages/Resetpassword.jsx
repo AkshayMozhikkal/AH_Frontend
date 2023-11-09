@@ -53,8 +53,7 @@ const ResetPassword = () => {
     const t = queryParams.get('t');
     setToken(t)
     setKey(key)
-    console.log('key:', key);
-    console.log('token:', t);
+   
     
   },[])
 

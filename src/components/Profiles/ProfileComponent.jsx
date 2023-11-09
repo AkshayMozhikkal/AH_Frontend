@@ -120,7 +120,7 @@ function ProfileComponent() {
       if (conRes.data){
         const acceptedConnections = conRes.data.filter((conn) => conn.status == 'a');
         setConnections(acceptedConnections)  }     
-      console.log(conRes, 'connectionsFetchsuccess');
+     
       dispatch(setConnectionsDetails({connectionsInfo : conRes.data}))
       handleLoading();
       
@@ -141,7 +141,7 @@ function ProfileComponent() {
       if (response.data){
         setWorks(response.data)
           }     
-      console.log(response, 'WorkPostFetchSuccess');
+     
       dispatch(setWorksDetails({worksInfo : response.data}))
       handleLoading();
       
@@ -174,7 +174,7 @@ function ProfileComponent() {
    const addressUpload = async(action)=>{
      try {
       if (action == "add"){
-        console.log(newAddrs,"newaddrss");
+       
         const response = await userAddressAdd(user.id, {...newAddrs, user:user.id});
         setAddress(response.data);
         dispatch(setAddressDetails({AddressInfo : response.data}))
@@ -185,7 +185,7 @@ function ProfileComponent() {
       }else{
         const response = await userAddressEdit(user.id,{...newAddrs, user: user.id});
         setAddress(response.data);
-        console.log(response);
+        
         dispatch(setAddressDetails({AddressInfo : response.data}))
         addressDialog();
         handleUpdate();
@@ -243,7 +243,7 @@ function ProfileComponent() {
         `${userBaseURL}edit_profile/${userId}/`,
         data
       );
-      console.log("Updated", response);
+      
       handleLoading();
 
       if (response.status == 200) {
@@ -303,7 +303,7 @@ function ProfileComponent() {
           },
         }
       );
-      console.log(response, "Vannuuu");
+      
       handleLoading();
 
       handleUpdate();
@@ -313,7 +313,7 @@ function ProfileComponent() {
       handleLoading();
 
       toast.error("Something went wrong..!");
-      console.log(error, "ErrorVannu");
+      console.log(error, "Error");
       setNewImg(null);
     }
   };
@@ -337,7 +337,7 @@ function ProfileComponent() {
         `${userBaseURL}edit_profile/${userId}/`,
         { is_artisan:true , art:art}
       );
-      console.log("Updated", response);
+      
       if (response.status == 200) {
         toast.success("Congrats..! You are an Artisan now.");
         handleUpdate();

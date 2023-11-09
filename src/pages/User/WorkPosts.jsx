@@ -22,7 +22,7 @@ function WorkPosts() {
   const fetchWorks = async ()=>{
     try {
       const response = await userWorksShared(user.id);
-      console.log(response, "vannath");
+      
       dispatch(setWorksDetails({worksInfo:response.data}));
       setWorks(response.data)   
       } catch (error) {
@@ -41,7 +41,7 @@ function WorkPosts() {
     
     try {
       const response = await axios.get(`${WorkBaseURL}search_posts/${value}`);
-      console.log(response, "postsearch success");
+      
       setWorks(response.data.filter((work)=>work.user=user.id));
     } catch (error) {
       console.log(error, "postsearch error");

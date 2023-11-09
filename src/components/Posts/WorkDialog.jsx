@@ -13,7 +13,7 @@ const WorkDialog = ({ open, workpost,comment, setNewComment, newComment, deleteC
           post: workpost.id,
           liked_by: loginedUser.id,
         });
-        console.log(res, "add_like_success");
+       
         trigger();
       } catch (error) {
         console.log(error, "add_likeerrorrr");
@@ -27,7 +27,7 @@ const WorkDialog = ({ open, workpost,comment, setNewComment, newComment, deleteC
         const res = await axios.delete(`${WorkBaseURL}remove_like/`, {
           data: { post: workpost.id, liked_by: loginedUser.id },
         });
-        console.log(res, "removeLikesuccess");
+       
         trigger();
       } catch (error) {
         console.log(error, "removeLikeerrorrr");

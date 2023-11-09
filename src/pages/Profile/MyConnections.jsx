@@ -36,7 +36,7 @@ function MyConnections() {
     const fetchConnections = async ()=>{
       try {
         const res = await axios.get(`${userBaseURL}connections/user_connections/${loginedUser.id}`)
-        console.log(res.data,"All connections");
+       
         setConnections(res.data)
         
       } catch (error) {
@@ -48,7 +48,7 @@ function MyConnections() {
      const removeConnection = async (id) =>{
       try {
         const res = axios.delete(`${userBaseURL}connections/remove_connection/${id}/`)
-        console.log(res,"removeconnectionsuccess");
+       
         handleUpdate();
         toast.info("Rejected")
         
@@ -64,7 +64,7 @@ function MyConnections() {
       console.log(connection.id,"connectionID");
       try {
         const res = axios.put(`${userBaseURL}connections/connection_handle/${connection.id}/`,{...connection,status:"a"})
-        console.log(res,"acceptconnectionsuccess");      
+           
         handleUpdate();
         toast.info("Accepted")
         
@@ -85,10 +85,10 @@ function MyConnections() {
   useEffect( ()=>{
     if(connections) {
     const aConn = connections.filter((item)=>{if(item.status ==='a'){return item}})
-    console.log(aConn,"acccepted connections");
+   
     setConnected(aConn);
     const pConn = connections.filter((item)=>{if(item.status ==='p' && item.to_users['id']===loginedUser.id){return item}})
-    console.log(pConn,"pending connections");
+   
     setPending(pConn);
   }   
   },[connections, updated])

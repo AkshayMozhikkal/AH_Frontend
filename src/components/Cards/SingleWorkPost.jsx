@@ -58,15 +58,15 @@ export function SingleWorkPost({works,onChildClick}) {
 
       }
       deleteDialogue();
-      console.log(worksData);
+      
   }
 
       // New Comment
       const newComment = async (workPost) =>{
-        console.log(workPost,"commenting on");
+        
         try {
           const res = await axios.post(`${WorkBaseURL}new_comment/`,{post:workPost.id, commented_by:workPost.user, text:comment})
-          console.log(res,"Commentpostsuccess");
+         
           setNewComment("")
           onChildClick();          
           toast.info("Comment Added")
@@ -85,7 +85,7 @@ export function SingleWorkPost({works,onChildClick}) {
       
       try {
         const res = await axios.delete(`${WorkBaseURL}delete_comment/${commentID}`)
-        console.log(res,"deletesuccess");
+        
         onChildClick();
         toast.info("Comment Removed")
         
@@ -99,11 +99,10 @@ export function SingleWorkPost({works,onChildClick}) {
 
      // Add Like 
     const add_like = async (workPost) =>{
-      console.log(workPost);
       
       try {
         const res = await axios.post(`${WorkBaseURL}new_like/`,{post:workPost.id, liked_by:workPost.user})
-        console.log(res,"add_like_success");
+        
         onChildClick();
         
         
@@ -117,11 +116,11 @@ export function SingleWorkPost({works,onChildClick}) {
 
     // Remove Like 
     const removeLike = async (workPost) =>{
-      console.log(workPost);
+     
       
       try {
         const res = await axios.delete(`${WorkBaseURL}remove_like/`,{data:{post:workPost.id, liked_by:workPost.user}})
-        console.log(res,"removeLikesuccess");
+        
         onChildClick();
    
       } catch (error) {
