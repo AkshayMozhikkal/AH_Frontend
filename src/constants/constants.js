@@ -1,7 +1,3 @@
-
-
-
-
 export const googleClientID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 export const userBaseURL = import.meta.env.VITE_userBaseURL;
