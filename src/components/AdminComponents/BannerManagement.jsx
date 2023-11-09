@@ -29,6 +29,7 @@ export function BannerManagement() {
     const [banner, setBanner]=useState({index:"", image:"", headline:"", description:""})
     const [open, setOpen] = useState(false)
     const [open2, setOpen2] = useState(false)
+    const [image, setImage] = useState("")
     
     const openHandler = () => setOpen((cur) => !cur);
     const open2Handler = (banner) =>{setBanner(banner); setOpen2((cur) => !cur);}
@@ -42,6 +43,18 @@ export function BannerManagement() {
       console.log(error);   
     }
   }
+
+  // Delete Banner
+  const deleteBanner = async()=>{
+    try {
+      const res = await axios.delete(`${componentsBaseURL}banner_edit/${banner.id}/`)
+      fetchBanners();
+      setBanner({index:"", image:"", headline:"", description:""})
+      toast.success("Banner removed")
+    } catch (error) {
+      console.log(error);   
+    }
+  }
      // Add Banner
   const addBanner = async()=>{
     let data = banner
@@ -50,9 +63,9 @@ export function BannerManagement() {
         toast.error("Specify the order")
         return
     }
-    if (banner.image != ""){
+    if (image != ""){
         const formData = new FormData();
-        formData.append("image", banner.image);
+        formData.append("image",image);
         formData.append("index", banner.index);
         formData.append("description", banner.description);
         formData.append("headline", banner.headline);  
@@ -70,24 +83,27 @@ export function BannerManagement() {
       })
       fetchBanners();
       setBanner({order:"", image:"", headline:"", description:""})
+      setImage("")
+      toast.success("Banner Added")
     } catch (error) {
        toast.error(error.response.data.index[0])   
     }
   }
+
      // Edit Banner
   const editBanner = async()=>{
-   
-    let data = banner
-   
-   
-    if (banner.image !=""){
+    delete banner.image
+    let data =  banner
+    
+    if (image !=""){
         const formData = new FormData();
-        formData.append("image", banner.image);
+        formData.append("image",image);
         formData.append("index", banner.index);
         formData.append("description", banner.description);
         formData.append("headline", banner.headline);  
         data =formData    
     }
+
     try {
       const res = await axios.patch(`${componentsBaseURL}banner_edit/${banner.id}/`,data,{
         headers: {
@@ -96,8 +112,10 @@ export function BannerManagement() {
       })
       fetchBanners();
       setBanner({order:"", image:"", headline:"", description:""})
+      setImage("")
+      toast.success("Banner Updated")
     } catch (error) {
-      console.log(error);   
+      toast.error(error.response.data.index[0])    
     }
   }
 
@@ -236,8 +254,8 @@ export function BannerManagement() {
         </CardFooter>
       </Card>
 
-     {open && <BannerModal open={openHandler} banner={banner} setBanner={setBanner} action={addBanner}/>}
-     {open2 && <BannerModal open={open2Handler} banner={banner} setBanner={setBanner} action={editBanner}/>}
+     {open && <BannerModal open={openHandler} image={image} setImage={setImage} deleteBanner={null} banner={banner} setBanner={setBanner} action={addBanner}/>}
+     {open2 && <BannerModal open={open2Handler} image={image} setImage={setImage} deleteBanner={deleteBanner} banner={banner} setBanner={setBanner} action={editBanner}/>}
     </div>
   );
 }

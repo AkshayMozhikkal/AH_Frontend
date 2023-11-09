@@ -9,9 +9,12 @@ import {
   import { Tooltip } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 
+
    
   export function AdminNavbar() {
+    
     const navigate = useNavigate()
+
     return (
       <Navbar className=" sticky top-0 z-30  h-max max-w-full rounded-none py-6 px-4 lg:px-8 lg:py-4 bg-blue-gray-50">
         <div className="flex flex-wrap items-center justify-between gap-y-4 text-blue-gray-900">

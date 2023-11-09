@@ -197,9 +197,12 @@ const profileMenuItems = [
 
  
 export function Navbarr() {
-  const [openNav, setOpenNav] = React.useState(false);
+  const [openNav, setOpenNav] = useState(false);
   const [user_present, setUserPresent] = useState(false)
   const navigate = useNavigate()
+
+  const openHandler = ()=>{ setOpenNav((cur)=>!cur)}
+
   useEffect( ()=> {
     const token = localStorage.getItem('token')
     if(token){
@@ -212,12 +215,6 @@ export function Navbarr() {
 
   )
  
-  React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false)
-    );
-  }, []);
  
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -302,7 +299,7 @@ export function Navbarr() {
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
-              onClick={() => setOpenNav(!openNav)}
+              onClick={()=>openHandler}
             >
               {openNav ? (
                 <svg
@@ -314,6 +311,7 @@ export function Navbarr() {
                   strokeWidth={2}
                 >
                   <path
+                    fillRule="evenodd"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M6 18L18 6M6 6l12 12"
@@ -328,6 +326,7 @@ export function Navbarr() {
                   strokeWidth={2}
                 >
                   <path
+                    fillRule="evenodd"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M4 6h16M4 12h16M4 18h16"
@@ -337,13 +336,11 @@ export function Navbarr() {
             </IconButton>
           </div>
         </div>
-        <Collapse  open={openNav}>
+        <Collapse  open={openNav} handler={openHandler}>
           {navList}
         </Collapse >
       </Navbar>
-      
-    
-     
+
     </div>
   );
 }

@@ -30,7 +30,6 @@ function Home() {
   const fetchWorks = async () => {
     try {
       const response = await axios.get(WorkBaseURL);
-      console.log(response, "vannath");
       setWorks(response.data);
     } catch (error) {
       console.log(error, "errorrruu");

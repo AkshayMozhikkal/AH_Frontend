@@ -17,7 +17,8 @@ export function CommonNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
  
   React.useEffect(() => {
-    if (loginedUser.id){
+    const token = localStorage.getItem('token')
+    if (loginedUser.id || token){
       navigate("/")
     }
     window.addEventListener(

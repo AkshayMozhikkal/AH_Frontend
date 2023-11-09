@@ -2,10 +2,12 @@ import { Carousel, Typography, Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { componentsBaseURL } from "../../constants/constants";
+import { useNavigate } from "react-router-dom";
 
  
 export function CarouselWithContent() {
   const [bannerData, setBannerData] = useState([])
+  const navigate = useNavigate()
 
   // fetch Banners
   const fetchBanners = async()=>{
@@ -46,7 +48,7 @@ export function CarouselWithContent() {
               {banner.description}
             </Typography>
             <div className="flex justify-center gap-2">
-              <Button size="lg" color="white">
+              <Button size="lg" color="white" onClick={()=>navigate('/people')}>
                 Explore
               </Button>
               <Button size="lg" color="white" variant="text">

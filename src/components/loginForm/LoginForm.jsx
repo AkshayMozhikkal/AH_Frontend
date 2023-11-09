@@ -12,7 +12,9 @@ import { userGoogleLogin } from "../../services/userAPIs";
 
 
 
+
 export function LoginForm() {
+  
   const navigate = useNavigate();
   const [user, setUser] = useState({ email: "", password: "" });
 
@@ -100,19 +102,16 @@ useEffect(() => {
   };
 
   // Login with details
-
   const handleLogin = async (e) => {
     if (validForm()) {
       handleLoading();
       try {
-        const response = await axios.post(userLoginURL, user);
-
-        
-        handleLoading();
+        const response = await axios.post(userLoginURL, user);    
         const token = JSON.stringify(response.data);
         const decoded = jwtDecode(token);
         toast.success(`Welcome ${decoded.first_name}..!!`);
         localStorage.setItem("token", token);
+        handleLoading();
         if (decoded.is_admin) {
           navigate("/");
         } else {

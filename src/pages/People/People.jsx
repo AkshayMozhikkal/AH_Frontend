@@ -62,12 +62,15 @@ function People() {
 
   // Fetch People
   const fetchPeople = async () => {
+    handleLoading()
     try {
       const res = await axios.get(userBaseURL);
      
       setPeople(res.data);
+      handleLoading()
     } catch (error) {
       console.log(error);
+      handleLoading()
     }
   };
 
