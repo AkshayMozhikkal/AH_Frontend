@@ -74,7 +74,7 @@ export function UsersTable() {
     handleLoading()
     try {
       const response = await axios.get(url);
-     
+      console.log(response)
       setData(response.data)
       setUsers(response.data.results)
       setUserData(response.data.results);
@@ -136,7 +136,7 @@ export function UsersTable() {
       <Dialog open={open} handler={handleOpen}>
         <DialogHeader>Block Or Unblock User</DialogHeader>
         <DialogBody divider>
-          Do you want to {userDetails[0] == "False" ? "Block" : "Unblock"}{" "}
+          Do you want to {userDetails[0] === false ? "Block" : "Unblock"}{" "}
           {userDetails[2]} ?
         </DialogBody>
         <DialogFooter>
@@ -330,12 +330,12 @@ export function UsersTable() {
                           {is_active ? (
                             <i className="fas fa-ban"
                             onClick={() => {
-                              handleOpen("False", id, username);
+                              handleOpen(false, id, username);
                             }}></i>
                           ) : (
                             <i class="fas fa-shield-halved"
                             onClick={() => {
-                              handleOpen("True", id, username);
+                              handleOpen(true, id, username);
                             }}></i>
                           )}
                         </Tooltip>
