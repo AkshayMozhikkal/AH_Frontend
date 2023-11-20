@@ -319,6 +319,35 @@ function ProfileComponent() {
   };
 
 
+  // Upload Image
+  const removeImage = async () => {
+    handleLoading();
+
+    setOpen2(false);
+    const userId = data.id;
+
+    try {
+      const response = await axios.patch(
+        `${userBaseURL}upload_image/${userId}/`,
+       {profile_image: null}
+       
+      );
+      
+      handleLoading();
+
+      handleUpdate();
+      toast.success("Profile Image removed successfully");
+      setNewImg(null);
+    } catch (error) {
+      handleLoading();
+
+      toast.error("Something went wrong..!");
+      console.log(error, "Error");
+      setNewImg(null);
+    }
+  };
+
+
   const [open3, setOpen3] = useState(false)
   const artisanDialog = ()=>{
     setOpen3((cur)=>!cur)
@@ -415,6 +444,10 @@ function ProfileComponent() {
           </div>
         </DialogBody>
         <DialogFooter>
+          {user.profile_image && 
+        <Button variant="gradient" color="gray" onClick={removeImage}>
+            <span>Remove Pic</span>
+          </Button>}
           <Button
             variant="text"
             color="red"
@@ -426,6 +459,7 @@ function ProfileComponent() {
           >
             <span>Cancel</span>
           </Button>
+         
           <Button variant="gradient" color="green" onClick={uploadImage}>
             <span>Upload</span>
           </Button>

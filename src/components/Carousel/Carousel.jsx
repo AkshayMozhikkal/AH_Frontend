@@ -23,7 +23,7 @@ export function CarouselWithContent() {
     fetchBanners();
   },[])
   return (
-    <Carousel className="xl ">
+    <Carousel className="xl h-screen">
       {bannerData.map((banner)=>{return(
       <div className="relative h-full w-full" key={banner.id}>
         <img

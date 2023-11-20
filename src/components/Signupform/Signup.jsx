@@ -145,9 +145,9 @@ import Loader from '../Loading/Loading';
  
 
     return (
-      <div className='h-screen  flex items-center justify-center '>
+      <div className='h-screen flex items-center justify-center '>
         {loading && <Loader />}
-      <Card className='p-5' color="transparent" shadow={true}>
+      <Card className='p-5 -mt-14 bg-brown-50' color="transparent" shadow={true}>
         <Typography variant="h4" color="light-blue">
           Sign Up
         </Typography>

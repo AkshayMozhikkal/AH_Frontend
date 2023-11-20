@@ -80,7 +80,7 @@ export function UsersTable() {
       setUserData(response.data.results);
       handleLoading()
     } catch (error) {
-      console.log(error.response, "Errorrr");
+      console.log(error, "Errorrr");
       handleLoading()
     }
   };

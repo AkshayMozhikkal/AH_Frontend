@@ -8,13 +8,13 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
-import { Select, Option } from "@material-tailwind/react";
 import axios from "axios";
 import { ConnectionBaseURL, userBaseURL } from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loading/Loading";
 import { useSelector } from "react-redux";
 import { Navbarr } from "../../components/navbar/Navbar";
+import defaultUser from "../../assets/images/static/default-user-icon-8.jpg"
 
 function People() {
   const [people, setPeople] = useState([]);
@@ -135,7 +135,7 @@ function People() {
     <div>
       <Navbarr />
       {loading && <Loader />}
-      <div className="flex h-auto bg-gray-100 gap-3 p-2  shadow-2xl sm:mx-24 mt-24 ">
+      <div className="flex h-auto  bg-gray-100 gap-3 p-2  shadow-2xl sm:mx-24 mt-24 ">
         <div className="flex-col  w-1/4 p-5 rounded  bg-white">
           <div className="relative flex mb-36 w-full gap-5 md:w-max ">
             <Input
@@ -177,11 +177,11 @@ function People() {
             </p>}
             
           </div>
-          <div className="flex flex-wrap w-full max-w-full h-auto max-h-[650px]  ml-2 mb-3 pl-12 pt-5 pb-5 gap-2 bg-white overflow-y-scroll">
+          <div className="flex flex-wrap w-full max-w-full h-auto max-h-[650px] min-h-[500px] ml-2 mb-3 pl-12 pt-5 pb-5 gap-2 bg-white overflow-y-scroll">
             {people &&
               people.map((person) => {
                 return (
-                  <div className="w-72 h-80 mb-7">
+                  <div key={person.id} className="w-72 h-80 mb-7">
                     <Card
                       className={
                         person.is_artisan
@@ -199,8 +199,8 @@ function People() {
                         }}
                       >
                         <img
-                          src={person.profile_image}
-                          className="h-auto w-auto"
+                          src={person.profile_image ? person.profile_image : defaultUser}
+                          className={person.profile_image ? `h-auto w-auto` : `h-full w-full`}
                           alt="profile-picture"
                         />
                       </CardHeader>

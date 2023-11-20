@@ -63,14 +63,13 @@ function ChatList() {
                 id="outlined-basic-email"
                 label="Search"
                 variant="outlined"
-                fullWidth
               />
             </ListItem>
 
             {connections.length>0? connections.map((connection) => {
               return connection.from_users.id === loginedUser.id 
                  ? (
-                <ListItem button key="RemySharp" onClick={()=>setSelectedUser(connection.to_users)}>
+                <ListItem button key={connection.id} onClick={()=>setSelectedUser(connection.to_users)}>
                   
                     <Avatar
                       className="mr-5"
@@ -82,7 +81,7 @@ function ChatList() {
                   
                 </ListItem>
               ) : (
-                <ListItem button key="RemySharp" onClick={()=>setSelectedUser(connection.from_users)}>
+                <ListItem button key={connection.id} onClick={()=>setSelectedUser(connection.from_users)}>
                   
                     <Avatar
                       className="mr-5"

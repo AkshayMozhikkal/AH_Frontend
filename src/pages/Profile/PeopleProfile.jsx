@@ -99,17 +99,20 @@ function PeopleProfile() {
 
   // Send connection request
   const sendConnection = async () => {
+    handleLoading();
     try {
       console.log(loginedUser);
       const res = await requestConnection({
         from_user: loginedUser.id,
         to_user: userData.id,
       });
-     
-      handleUpdate();
+
+      handleLoading();
+      handleUpdate(); 
       toast.success("Request send..");
     } catch (error) {
       console.log(error, "connectionerror");
+      handleLoading();
       if (error.response.data["from_user"]) {
         toast.error("Please Login to Connect..!");
       }
@@ -317,9 +320,9 @@ function PeopleProfile() {
                     fill="currentColor"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     />
                   </svg>
                 )}
@@ -511,7 +514,7 @@ function PeopleProfile() {
           <div>
           <input
             value = {searchKey}
-            onChange={(e)=>setSearchKey(e.target.value)}
+            onChange={(e)=>{setSearchKey(e.target.value); search();}}
             className="p-3 text-lg rounded-lg border-none"
             placeholder="search.."
           ></input>
@@ -573,7 +576,7 @@ function PeopleProfile() {
                   </div>
                 );
               })
-            : <div className="flex   h-16 mb-3 rounded-xl p-5 items-center justify-between bg-gray-50"> <p className="text-black text-xl">No Connections..</p></div>  }
+            : <div className="flex   h-16 mb-3 rounded-xl p-5 items-center justify-between bg-gray-50"> <p className="text-black text-xl">No Connections {searchKey && `matching: ${searchKey}`}...</p></div>  }
         </div>
       </Dialog>
       {open && (

@@ -36,6 +36,7 @@ import { singleUserURL } from "../../constants/constants";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { resetState, setUserDetails } from "../../redux/users";
+import defaultUser from "../../assets/images/static/default-user-icon-8.jpg"
 
 
 
@@ -128,7 +129,7 @@ const profileMenuItems = [
                   size="sm"
                   alt="tania andrew"
                   className="border border-gray-900 p-0.5"
-                  src={userData.profile_image}
+                  src={userData.profile_image ? userData.profile_image : defaultUser} 
                 />
                 <ChevronDownIcon
                   strokeWidth={2.5}

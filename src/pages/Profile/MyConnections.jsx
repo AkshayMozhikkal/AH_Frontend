@@ -15,6 +15,7 @@ import { userBaseURL } from '../../constants/constants'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { Navbarr } from '../../components/navbar/Navbar';
+import defaultUser from '../../assets/images/static/default-user-icon-8.jpg'
 
 
 
@@ -146,11 +147,11 @@ function MyConnections() {
               connected.map((conn)=>{
 
                 return (
-                  <div className=" w-64 h-80 mb-7">
+                  <div key={conn.id} className=" w-64 h-80 mb-7">
                     {conn.from_users.id == loginedUser.id ? 
                     <Card className="w-auto bg-white-50">
                       <CardHeader floated={false} className="h-44" >
-                        <img src={conn.to_users.profile_image} className="h-auto w-auto" alt="profile-picture" />
+                        <img src={conn.to_users.profile_image ? conn.to_users.profile_image: defaultUser} className={conn.to_users.profile_image ? "h-auto w-auto" : "h-full w-full"} alt="profile-picture" />
                       </CardHeader>
                       <CardBody className="text-center">
                         <Typography variant="h5" color="blue-gray" className="mb-1">
@@ -166,13 +167,13 @@ function MyConnections() {
                         <Button className="mt-2 bg-transparent rounded-full normal-case font-normal border-2 border-blue-100 text-blue-800"
                         onClick={()=>navigate(`/user_profile/${conn.to_users.id}`)}
                         >
-                          Profile  <i class="fas fa-sharp fa-light fa-user"></i></Button>
+                          Profile  <i className="fas fa-sharp fa-light fa-user"></i></Button>
                       </CardBody>
                     </Card>
                     : 
                     <Card className="w-auto bg-white-50">
                       <CardHeader floated={false} className="h-44" >
-                        <img src={conn.from_users.profile_image} className="h-auto w-auto" alt="profile-picture" />
+                        <img src={conn.from_users.profile_image ? conn.from_users.profile_image: defaultUser} className={conn.from_users.profile_image ? "h-auto w-auto" : "h-full w-full"} alt="profile-picture" />
                       </CardHeader>
                       <CardBody className="text-center">
                         <Typography variant="h5" color="blue-gray" className="mb-1">
@@ -188,7 +189,7 @@ function MyConnections() {
                         <Button className="mt-2 bg-transparent rounded-full normal-case font-normal border-2 border-blue-100 text-blue-800"
                          onClick={()=>navigate(`/user_profile/${conn.from_users.id}`)}
                         >
-                          Profile  <i class="fas fa-sharp fa-light fa-user "></i></Button>
+                          Profile  <i className="fas fa-sharp fa-light fa-user "></i></Button>
                       </CardBody>
                     </Card>
                     

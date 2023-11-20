@@ -130,10 +130,10 @@ useEffect(() => {
   };
 
   return (
-    <div className="pt-24 flex items-center justify-center">
+    <div className="pt-20  flex items-center justify-center">
       {loading && <Loader />}
 
-      <Card className="p-4" color="transparent" shadow={true}>
+      <Card className="p-4 bg-brown-50" color="transparent" shadow={true}>
         <Button
           className="bg-white m-5   flex justify-center align-middle gap-3 p-2 text-gray-600"
           onClick={() => login()}
