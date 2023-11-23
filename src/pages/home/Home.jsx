@@ -16,7 +16,7 @@ import { WorkBaseURL, userBaseURL } from "../../constants/constants";
 import NoPropic from "../../assets/images/static/default-user-icon-8.jpg";
 import { useNavigate } from "react-router-dom";
 import { Navbarr } from "../../components/navbar/Navbar";
-import {defaultUser} from "../../assets/images/static/default-user-icon-8.jpg"
+import defaultUser from "../../assets/images/static/default-user-icon-8.jpg"
 
 function Home() {
   const user = useSelector((state) => state.user.userInfo);
