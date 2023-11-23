@@ -16,6 +16,7 @@ import { WorkBaseURL, userBaseURL } from "../../constants/constants";
 import NoPropic from "../../assets/images/static/default-user-icon-8.jpg";
 import { useNavigate } from "react-router-dom";
 import { Navbarr } from "../../components/navbar/Navbar";
+import {defaultUser} from "../../assets/images/static/default-user-icon-8.jpg"
 
 function Home() {
   const user = useSelector((state) => state.user.userInfo);
@@ -142,7 +143,7 @@ function Home() {
                     variant="circular"
                     alt="user 1"
                     className="border-2 h-8 w-8 border-white hover:z-10 focus:z-10"
-                    src={work.artist.profile_image}
+                    src={work.artist.profile_image ? work.artist.profile_image : defaultUser }
                   />
                   {work.artist.username}
                 </div>
